@@ -7,7 +7,8 @@ export default class Main extends Component {
   state = {
     url: '',
     method: 'GET',
-    body: 'Response body...'
+    responseBody: [],
+    history: []
   }
 
   handleChange = ({ target }) => {
@@ -16,16 +17,17 @@ export default class Main extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { url, method } = this.state;
+    const { url, method, history } = this.state;
     const response = await sendRequest(url, method);
-    this.setState({ body: response });
+    history.push({url, method});
+    this.setState({ responseBody: response });
   }
 
   async componentDidMount() {
   }
 
   render() {
-    const { url, method, body } = this.state;
+    const { url, method, responseBody, history } = this.state;
     return (
       <main className="grid grid-cols-12 top-12 w-full bottom-0">
         <Form 
@@ -33,8 +35,13 @@ export default class Main extends Component {
           method={method} 
           onChange={this.handleChange}
           onSubmit={this.handleSubmit}
-          body={body} />
-        <Side />
+          responseBody={responseBody} />
+        
+        <ul className="col-span-4 text-white mt-12 p-8 w-full">
+          <Side
+            history={history}
+          />
+        </ul>
       </main>
     )
   }
