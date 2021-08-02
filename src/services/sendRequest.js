@@ -6,13 +6,11 @@ export const sendRequest = async (url, method, reqBody) => {
     const response = await fetch(url, {
       method: method,
       headers: {
-        'Content-type': 'text/html; charset=UTF-8',
+        'Content-type': 'application/json; charset=UTF-8',
       },
       body: JSON.stringify(reqBody)
     });
-    const jason = await response.text();
-    console.log(jason);
-    return jason;
+    return await response.json();
   } catch (err) {
     console.log(err);
   }
