@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactJson from 'react-json-view'
 
-const Form = ({ url, onChange, onSubmit, responseBody }) => {
+const Form = ({ url, onChange, onSubmit, responseBody, method }) => {
+
   return (
       <div className="col-span-8 p-12 mt-12">
         <section className="bg-white p-20 rounded-2xl shadow-lg">
@@ -54,12 +55,14 @@ const Form = ({ url, onChange, onSubmit, responseBody }) => {
 
             <button></button>
 
+            { method.includes('P') ? <textarea name="textArea" placeholder={method} className="border-2 border-gray-400 border-opacity-50 w-full mt-4 p-4"></textarea> : <></> }
+            
+
           </form>
 
           <div 
             className="border-2 border-gray-400 border-opacity-50 rounded-md w-full p-4 mt-4">
               <ReactJson src={responseBody} theme="summerfruit:inverted"/>
-              <pre>Response body...</pre>
             </div>
             
         </section>

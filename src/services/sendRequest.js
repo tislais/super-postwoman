@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const sendRequest = async (url, method) => {
   return await fetch(url, {
