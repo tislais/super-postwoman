@@ -55,7 +55,7 @@ const Form = ({ url, onChange, onSubmit, method, resBody, reqBody }) => {
 
             <button></button>
 
-            { method.includes('P') ? <textarea name="reqBody" value={reqBody} onChange={onChange} placeholder={method} className="border-2 border-gray-400 border-opacity-50 w-full mt-4 p-4"></textarea> : <></> }
+            { method.includes('P') ? <textarea name="reqBody" value={reqBody} onChange={onChange} placeholder="Request body..." className="border-2 border-gray-400 border-opacity-50 w-full mt-4 p-4"></textarea> : <></> }
             
 
             
@@ -63,7 +63,7 @@ const Form = ({ url, onChange, onSubmit, method, resBody, reqBody }) => {
 
           <div 
             className="border-2 border-gray-400 border-opacity-50 rounded-md w-full p-4 mt-4">
-              <ReactJson src={resBody} theme="summerfruit:inverted"/>
+              <pre><ReactJson src={resBody} theme="summerfruit:inverted"/></pre>
             </div>
             
         </section>

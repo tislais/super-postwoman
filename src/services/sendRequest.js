@@ -1,22 +1,7 @@
 
 export const sendRequest = async (url, method, reqBody) => {
-  if (reqBody) {
-    console.log('post');
-    try {
-    const response = await fetch(url, {
-      method: method,
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(reqBody)
-    });
-    return await response.json();
-  } catch (err) {
-    console.log(err);
-  }
-
-  }
-  if (method === 'GET' || 'DELETE') {
+  console.log(reqBody);
+  if (method === 'GET' || method === 'DELETE') {
     console.log('get or delete');
     const response = await fetch(url, {
       method: method
@@ -24,6 +9,15 @@ export const sendRequest = async (url, method, reqBody) => {
     return response.json();
 
   } 
+  console.log('post');
+  const response = await fetch(url, {
+    method: method,
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    body: reqBody
+  });
+  return response.json();
 
 }
 
